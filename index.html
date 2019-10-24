@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset='utf-8' />
-    <title>Halloween Map using OS Open Zoomstack</title>
+    <title></title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' />
@@ -13,16 +13,253 @@
 </head>
 <body>
 
+<style>
+#map {
+    position: fixed;
+    width:65%;
+}
+#features {
+    width: 35%;
+    margin-left: 65%;
+    font-family: Arial;
+    overflow-y: scroll;
+    background-color: #0e1b29;
+}
+section {
+    padding:  25px 50px;
+    line-height: 25px;
+    border-bottom: 1px solid #23a8d3;
+    opacity: 0.25;
+    font-size: 20px;
+}
+section.active {
+    opacity: 0.75;
+}
+section:last-child {
+    border-bottom: none;
+    margin-bottom: 1000px;
+}
+    .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+</style>
+
 <div id='map'></div>
+<div id='features'>
+    <section id='welcome' class='active'>
+        <font color="#01cfff"><h3>13 spooky Halloween locations across Great Britain</h3><br>
+        <h6>Insert introduction text here if necessary</h6>
+    </section>
+  
+    <section id='section1'>
+        <font color="#01cfff"><h4>1. Pendle Hill</h4></font>
+        <h6>The Pendle witch trials of 1612 are one of the most famous trials in English history, where 12 people from around Pendle Hill were charged with murder using witchcraft resulting in 10 executions. In 2011 a 17th century cottage was discovered by water engineers during construction work and is believed to have belonged to one of the Pendle witches. Pendle Hill remains full of mystery and is truly bewitching to visit. </h6>
+    </section>
+  
+  <section id='section2'>
+      <font color="#01cfff"><h4>2. Tintern Abbey</h4></font>
+        <h6>Situated on the banks of the River Wye, Tintern Abbey was founded in the 12th century but fell into ruin after the Dissolution of the Monasteries in the 16th century. There are reports of a knight in chain mail and ghostly hooded monk processions carrying torches, seen through the hollow windows and doorways of the mysterious abbey.</h6>
+    </section>
+    
+    <section id='section3'>
+        <font color="#01cfff"><h4>3. Chillingham Castle</h4></font>
+        <h6>A large variety of ghosts have been spotted by visitors to Chillingham Castle over the years. A blue boy used to apparently haunt the Pink Room in the castle with guests seeing blue flashes and a halo above their beds after a load wail. The skeleton of a boy wearing blue clothes was then discovered during renovation works. Other ghosts reportedly include an injured soldier who lives in the Castle’s torture chamber, and a Spanish witch whose curse brings bad luck to those who steal from the castle. </h6>
+    </section>
+    
+    <section id='section4'>
+        <font color="#01cfff"><h4>4. Whitby Abbey</h4></font>
+        <h6>Originally a Christian monastery in the 7th century that later became an Abbey, after the Dissolution of the Monasteries in 1540 by Henry VIII the abbey fell into ruin. The Gothic setting of the abbey ruin overlooking the North Sea inspired Bram Stoker’s 1897 novel Dracula which featured the creature coming ashore as a large dog and climbing the 199 steps up to the ruins. You can still reach the abbey by climbing those steps today. </h6>
+    </section>
+    
+    <section id='section5'>
+        <font color="#01cfff"><h4>5. Tower of London</h4></font>
+        <h6>Often said to be the most haunted building in Britain, the Tower of London has a history of being a place of imprisonment and torture. Ghosts of the Princes in the Tower, allegedly murdered by their uncle Richard III, are said to roam the tower. Other ghosts include Lady Jane Grey, the White Lady and Anne Boleyn, who was buried in the Tower, and has been said to walk around carrying her head under her arm. </h6>
+    </section>
+
+    <section id='section6'>
+        <font color="#01cfff"><h4>6. Culloden Moor</h4></font>
+        <h6>Culloden Moor was the site of the last battle on British soil, on 16th April 1746, resulting in a slaughter of the Jacobite rebellion who supported the return of the Stuarts to the throne. The government troops won and Jacobite prisoners and wounded were executed. On the anniversary of the battle, ghosts of fallen soldiers rise up, and steel weapons and cries of the wounded are said to be heard. </h6>
+    </section>
+        
+    <section id='section7'>
+        <font color="#01cfff"><h4>7. Margam Castle</h4></font>
+        <h6>Margam Castle is an impressive large Victorian country house built in a gothic style and has many paranormal stories. The most seen ghost is thought to be of Robert Scott, who worked at the Castle as a gamekeeper until he was murdered by a poacher and is said to be full of rage over his unjust killing. Other ghosts heard or seen by visitors and staff include giggling children in Victorian dress and a blacksmith. </h6>
+    </section>
+
+    <section id='section8'>
+        <font color="#01cfff"><h4>8. Colchester Castle</h4></font>
+        <h6>The castle used to be a county prison, where during the English Civil War in 1645 the Witchfinder General Matthew Hopkins interrogated and imprisoned suspected witches. In total across East Anglia, he is believed to have been responsible for the executions of 300 alleged witches from 1644-1646. </h6>
+    </section>
+
+    <section id='section9'>
+        <font color="#01cfff"><h4>9. Museum of Witchcraft</h4></font>
+        <h6>The Museum of Witchcraft and Magic in Boscastle was founded in 1960 by the English folk magician Cecil Williamson, and is now one of the most visited museums in Cornwall. The collection has grown to over 3000 objects and 7000 books and is a great opportunity to discover the history of witchcraft and magic in Britain. </h6>
+    </section>
+
+    <section id='section10'>
+        <font color="#01cfff"><h4>10. Skaill House</h4></font>
+        <h6>Built in 1620, and a short distance from the stone-age village of Skara Brae, Skaill House is apparently home to many restless spirits, including the ghost of Ubby. Ubby was a man who built a small island in the middle of Skaill Loch by repeatedly rowing out and dumping stones, which eventually formed a small islet above the water. He is said to have died on the island and his spirit has adopted Skaill House. </h6>
+    </section>
+
+    <section id='section11'>
+        <font color="#01cfff"><h4>11. Burley</h4></font>
+        <h6>Burley has a long connection with witches and the supernatural. During the 1950s, a self-styled white witch called Sybil Leek lived in Burley, and could be seen walking around the village with her pet jackdaw on her shoulder. Witch-related gifts can be found in Burley’s gift shops. </h6>
+    </section>
+
+    <section id='section12'>
+        <font color="#01cfff"><h4>12. Dunsinane Hill</h4></font>
+        <h6>In 1054 the Earl of Northumbria defeated Macbeth of Scotland in a battle. The Hill is mentioned in Shakespeare’s play Macbeth when Macbeth is told by a supernatural being “Macbeth shall never vanquished be, until Great Birnam wood to high Dunsinane Hill Shall come against him.”</h6>
+    </section>
+
+    <section id='section13'>
+        <font color="#01cfff"><h4>13. Tutbury Castle</h4></font>
+        <h6>Tutbury Castle is a mostly ruined medieval castle within which Mary Queen of Scots was held as a prisoner 4 times, and her ghost is said to roam the castle. Many other ghostly sightings have occurred including ‘The Keeper’ who was a man in a suit of armour who shouts at castle guests. </h6>
+    </section>
+
+        <section id='section14'>
+        <img src="http://snodnipper.github.io/os-zoomstack-masterclass/brand/ordnance_survey_white.png" style="width:40%;height:40%;"><br>
+         <font size="1">Contains OS data © Crown copyright and database rights 2018</font>
+    </section>
+    
+  </div>
 <script>
 mapboxgl.accessToken = '';
 var map = new mapboxgl.Map({
-    container: 'map', // container id
-    style: 'https://RobertWingfield2.github.io/HalloweenMap1/style.json', // stylesheet location
-    center: [-1.712722, 52.160613], // starting position [lng, lat]
-    zoom: 7 // starting zoom
-});
+    container: 'map',
+    style: 'https://RobertWingfield2.github.io/HalloweenMap1/style.json',
+        maxZoom: 16,
+        bearing: 0,
+        center: [-3.276136, 54.831588],
+        zoom: 6,
+        speed: 0.5,
+        pitch: 0
+    });
+    
+  var chapters = {
+    'welcome': {
+        bearing: 0,
+        center: [-3.276136, 54.831588],
+        zoom: 5.93,
+        speed: 0.5,
+        pitch: 34
+    },
+    'section1': {
+        bearing: 0,
+        center: [-2.298638, 53.863967],
+        speed: 0.5,
+        zoom: 12.49,
+        pitch: 35
+    },
+    'section2': {
+        center: [-2.676674, 51.696103],
+        bearing: 0,
+        zoom: 14.69,
+        speed: 37.5,
+        pitch: 0
+    },
+    'section3': {
+        bearing: 0,
+        center: [-1.905728, 55.524478],
+        zoom: 13.64,
+        speed: 0.5,
+        pitch: 37.5
+    },
+    'section4': {
+        bearing: -50.38,
+        center: [-0.604909, 54.485614],
+        zoom: 15.33,
+        speed: 0.5,
+        pitch: 60
+    },
+    'section5': {
+        bearing: 17.6,
+        center: [-0.075858, 51.507142],
+        zoom: 15.65,
+        pitch: 60,
+        speed: 0.5
+    },
+    'section6': {
+        bearing: -21.32,
+        center: [-4.102229, 57.472921],
+        zoom: 13.12,
+        pitch: 55,
+        speed: 0.5
+    },
+    'section7': {
+        bearing: 17.6,
+        center: [-3.724711, 51.561635],
+        zoom: 15.12,
+        pitch: 37,
+        speed: 0.5
+    },
+    'section8': {
+        bearing: -1.6,
+        center: [0.902949, 51.890841],
+        zoom: 15.81,
+        pitch: 43.5,
+        speed: 0.5
+    },
+    'section9': {
+        bearing: -63.59,
+        center: [-4.692484, 50.690413],
+        zoom: 15.49,
+        pitch: 60,
+        speed: 0.5
+    },
+    'section10': {
+        bearing: -54.48,
+        center: [-3.331847, 59.045989],
+        zoom: 14.31,
+        pitch: 60,
+        speed: 0.5
+    },
+    'section11': {
+        bearing: 0.18,
+        center: [-1.701567, 50.825346],
+        zoom: 15.71,
+        pitch: 60,
+        speed: 0.5
+    },
+    'section12': {
+        bearing: -1.6,
+        center: [-3.277684, 56.468319],
+        zoom: 13.02,
+        pitch: 27.5,
+        speed: 0.5
+    },
+    'section13': {
+        bearing: 0,
+        center: [-1.690233, 52.859221],
+        zoom: 15.22,
+        pitch: 57,
+        speed: 0.5
+    },
+};
+// On every scroll event, check which element is on screen
+window.onscroll = function() {
+    var chapterNames = Object.keys(chapters);
+    for (var i = 0; i < chapterNames.length; i++) {
+        var chapterName = chapterNames[i];
+        if (isElementOnScreen(chapterName)) {
+            setActiveChapter(chapterName);
+            break;
+        }
+    }
+};
+var activeChapterName = 'baker';
+function setActiveChapter(chapterName) {
+    if (chapterName === activeChapterName) return;
+    map.flyTo(chapters[chapterName]);
+    document.getElementById(chapterName).setAttribute('class', 'active');
+    document.getElementById(activeChapterName).setAttribute('class', '');
+    activeChapterName = chapterName;
+}
+function isElementOnScreen(id) {
+    var element = document.getElementById(id);
+    var bounds = element.getBoundingClientRect();
+    return bounds.top < window.innerHeight && bounds.bottom > 0;
+}
 </script>
-
 </body>
 </html>
